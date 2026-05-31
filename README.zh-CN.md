@@ -6,6 +6,49 @@ ReleaseLint 是一个面向 GitHub 项目的发布就绪检查工具。它会在
 
 它不是 release notes 生成器，也不是 AI 助手，更不是自动发版工具。ReleaseLint 专注于可重复、可审计、能在 CI 中运行的确定性检查。
 
+## 快速演示
+
+```mermaid
+flowchart LR
+  A["已合并 PR"] --> D["ReleaseLint"]
+  B["已关闭 issue"] --> D
+  C["版本文件"] --> D
+  E[".releaselint.json"] --> D
+  D --> F["Blocker / warning"]
+  D --> G["Semver 版本建议"]
+  D --> H["Markdown 或 JSON 报告"]
+```
+
+运行一个通过示例：
+
+```bash
+npm run check:passing
+```
+
+示例输出：
+
+```text
+# ReleaseLint Report
+
+Repository: example/widgets
+Range: v1.2.0...main
+Status: Ready
+
+## Summary
+
+- Recommended bump: patch
+- Blockers: 0
+- Warnings: 0
+```
+
+运行一个包含发布风险的示例：
+
+```bash
+npm run check
+```
+
+ReleaseLint 会报告缺少 release label、breaking change 缺少迁移说明等 blocker。
+
 ## 为什么需要它
 
 开源维护者在每次发版前，经常需要回答这些问题：

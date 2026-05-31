@@ -6,6 +6,49 @@ ReleaseLint is a release readiness linter for GitHub projects. It checks whether
 
 It is not a release-note generator, an AI assistant, or an automatic publishing tool. ReleaseLint focuses on deterministic checks that can run in CI.
 
+## Quick Demo
+
+```mermaid
+flowchart LR
+  A["Merged PRs"] --> D["ReleaseLint"]
+  B["Closed issues"] --> D
+  C["Version file"] --> D
+  E[".releaselint.json"] --> D
+  D --> F["Blockers / warnings"]
+  D --> G["Semver recommendation"]
+  D --> H["Markdown or JSON report"]
+```
+
+Run a clean fixture:
+
+```bash
+npm run check:passing
+```
+
+Example output:
+
+```text
+# ReleaseLint Report
+
+Repository: example/widgets
+Range: v1.2.0...main
+Status: Ready
+
+## Summary
+
+- Recommended bump: patch
+- Blockers: 0
+- Warnings: 0
+```
+
+Run a fixture with release-readiness problems:
+
+```bash
+npm run check
+```
+
+ReleaseLint will report blockers such as missing release labels or missing migration notes for breaking changes.
+
 ## Why
 
 Maintainers often need to answer the same questions before every release:
