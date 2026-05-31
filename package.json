@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Release readiness linter for GitHub projects.",
   "type": "module",
+  "homepage": "https://github.com/vaibanbuilds/releaselint#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaibanbuilds/releaselint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vaibanbuilds/releaselint/issues"
+  },
   "bin": {
     "releaselint": "./src/cli.js"
   },
