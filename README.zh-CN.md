@@ -115,6 +115,8 @@ ReleaseLint v0.1 会检查：
 - 如果存在本地 `package.json`，版本号应与推荐版本变更匹配。
 - 已关闭 issue 应该链接到 PR 或 commit，除非标记为 `no-code-change`、`invalid`、`duplicate` 或 `wontfix`。
 
+ReleaseLint 会同时从 issue 正文和已合并 PR 正文中识别关联 issue，例如 `fixes #123`、`closes #123`、`resolves #123`。
+
 ## 设计原则
 
 - 确定性优先：AI 可以在未来辅助撰写说明，但发布规则由确定性检查决定。

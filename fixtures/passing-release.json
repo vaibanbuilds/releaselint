@@ -34,7 +34,7 @@
       "number": 18,
       "title": "Retry API calls when rate limited",
       "labels": ["bug"],
-      "body": "Fixes #18 in PR #45.",
+      "body": "Closed after implementation landed in PR #45.",
       "url": "https://github.com/example/widgets/issues/18"
     },
     {

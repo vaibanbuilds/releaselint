@@ -115,6 +115,8 @@ ReleaseLint v0.1 checks:
 - Local `package.json` version should match the recommended bump when available.
 - Closed issues should link to a PR or commit unless they are marked `no-code-change`, `invalid`, `duplicate`, or `wontfix`.
 
+ReleaseLint detects linked issues from both issue bodies and merged pull request bodies, including markers such as `fixes #123`, `closes #123`, and `resolves #123`.
+
 ## Design Principles
 
 - Deterministic first: AI can help write notes later, but rules decide readiness.

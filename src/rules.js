@@ -6,6 +6,7 @@ export async function lintRelease(context, config, options = {}) {
   const findings = [];
   const prAnalyses = context.pullRequests.map((pr) => analyzePullRequest(pr, config));
   const recommendedBump = highestBump(prAnalyses.map((item) => item.bump));
+  const linkedIssueNumbers = linkedIssuesFromPullRequests(context.pullRequests, config.issueLinkPatterns);
 
   for (const analysis of prAnalyses) {
     if (config.requirements.requireReleaseLabel && analysis.bump === "unlabeled") {
@@ -32,6 +33,7 @@ export async function lintRelease(context, config, options = {}) {
   if (config.requirements.requireLinkedIssueForClosedIssues) {
     for (const issue of context.closedIssues || []) {
       if (hasAnyLabel(issue.labels, ["no-code-change", "invalid", "duplicate", "wontfix"])) continue;
+      if (linkedIssueNumbers.has(issue.number)) continue;
       if (!hasMarker(issue.body, config.issueLinkPatterns)) {
         findings.push(warning(
           "closed-issue-without-link",
@@ -122,6 +124,31 @@ function hasAnyLabel(labels, expected) {
 function hasMarker(text, markers) {
   const normalized = (text || "").toLowerCase();
   return markers.some((marker) => normalized.includes(marker.toLowerCase()));
+}
+
+function linkedIssuesFromPullRequests(pullRequests, markers) {
+  const linked = new Set();
+  const markerPattern = markers
+    .map((marker) => marker.replace("#", "").trim())
+    .filter(Boolean)
+    .map(escapeRegExp)
+    .join("|");
+
+  if (!markerPattern) return linked;
+
+  const pattern = new RegExp(`(?:${markerPattern})\\s+#(\\d+)`, "gi");
+  for (const pr of pullRequests || []) {
+    const text = `${pr.title || ""}\n${pr.body || ""}`;
+    for (const match of text.matchAll(pattern)) {
+      linked.add(Number(match[1]));
+    }
+  }
+
+  return linked;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function blocker(rule, message, url) {

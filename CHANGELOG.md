@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 - 2026-05-31
+
+- Improved linked issue detection by reading merged pull request bodies.
+- Added fixture coverage for PR-body issue links.
+- Documented linked issue marker behavior in English and Chinese READMEs.
+
 ## v0.1.0 - 2026-05-31
 
 Initial MVP release of ReleaseLint.

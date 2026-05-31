@@ -14,7 +14,7 @@
       "number": 42,
       "title": "Add JSON output",
       "labels": ["feature"],
-      "body": "Adds machine-readable JSON reports.",
+      "body": "Adds machine-readable JSON reports. Fixes #16.",
       "url": "https://github.com/example/widgets/pull/42",
       "mergedAt": "2026-05-20T10:00:00Z",
       "author": "contributor-a"
@@ -45,6 +45,13 @@
       "labels": ["enhancement"],
       "body": "This was closed after the implementation landed.",
       "url": "https://github.com/example/widgets/issues/15"
+    },
+    {
+      "number": 16,
+      "title": "Expose machine-readable reports",
+      "labels": ["enhancement"],
+      "body": "Closed after PR #42 merged.",
+      "url": "https://github.com/example/widgets/issues/16"
     }
   ]
 }
