@@ -8,6 +8,8 @@ ReleaseLint 是一个面向 GitHub 项目的发布就绪检查工具。它会在
 
 ## 快速演示
 
+ReleaseLint 会把 GitHub 发版证据整理成适合 CI 使用的发布就绪报告：
+
 ```mermaid
 flowchart LR
   A["已合并 PR"] --> D["ReleaseLint"]
@@ -19,27 +21,19 @@ flowchart LR
   D --> H["Markdown 或 JSON 报告"]
 ```
 
-运行一个通过示例：
+### 可以发布的版本
+
+![ReleaseLint 通过报告](assets/demo-ready.svg)
+
+运行通过示例：
 
 ```bash
 npm run check:passing
 ```
 
-示例输出：
+### 存在发布风险的版本
 
-```text
-# ReleaseLint Report
-
-Repository: example/widgets
-Range: v1.2.0...main
-Status: Ready
-
-## Summary
-
-- Recommended bump: patch
-- Blockers: 0
-- Warnings: 0
-```
+![ReleaseLint 风险报告](assets/demo-blockers.svg)
 
 运行一个包含发布风险的示例：
 
@@ -48,6 +42,13 @@ npm run check
 ```
 
 ReleaseLint 会报告缺少 release label、breaking change 缺少迁移说明等 blocker。
+
+### 典型使用流程
+
+1. 在仓库中添加 `.releaselint.json`。
+2. 给 PR 使用 `feature`、`fix`、`docs`、`breaking-change` 等 release label。
+3. 在本地或 GitHub Actions 中运行 ReleaseLint。
+4. 修复 blocker 后再发布 tag。
 
 ## 为什么需要它
 

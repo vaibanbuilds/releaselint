@@ -1,0 +1,22 @@
+<svg width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ReleaseLint blockers report demo</title>
+  <desc id="desc">A terminal-style screenshot showing ReleaseLint blockers and warnings for a risky release.</desc>
+  <rect width="960" height="600" rx="18" fill="#0d1117"/>
+  <rect x="0" y="0" width="960" height="44" rx="18" fill="#161b22"/>
+  <circle cx="28" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="50" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="72" cy="22" r="6" fill="#27c93f"/>
+  <text x="104" y="28" fill="#8b949e" font-family="Consolas, Menlo, monospace" font-size="14">ReleaseLint demo - needs attention</text>
+  <text x="34" y="86" fill="#7ee787" font-family="Consolas, Menlo, monospace" font-size="18">$ npm run check</text>
+  <text x="34" y="132" fill="#f0f6fc" font-family="Consolas, Menlo, monospace" font-size="24" font-weight="700"># ReleaseLint Report</text>
+  <text x="34" y="180" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="18">Repository: example/widgets</text>
+  <text x="34" y="212" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="18">Range: v1.2.0...main</text>
+  <text x="34" y="244" fill="#ffa657" font-family="Consolas, Menlo, monospace" font-size="18" font-weight="700">Status: Needs attention</text>
+  <text x="34" y="298" fill="#f0f6fc" font-family="Consolas, Menlo, monospace" font-size="22" font-weight="700">## Findings</text>
+  <text x="34" y="344" fill="#ff7b72" font-family="Consolas, Menlo, monospace" font-size="17">- blocker missing-migration-notes: PR #43 is breaking but has no migration notes</text>
+  <text x="34" y="380" fill="#ff7b72" font-family="Consolas, Menlo, monospace" font-size="17">- blocker missing-release-label: PR #44 has no release label</text>
+  <text x="34" y="416" fill="#ffa657" font-family="Consolas, Menlo, monospace" font-size="17">- warning closed-issue-without-link: Issue #15 has no obvious PR or commit link</text>
+  <text x="34" y="472" fill="#f0f6fc" font-family="Consolas, Menlo, monospace" font-size="22" font-weight="700">## Pull Request Evidence</text>
+  <text x="34" y="520" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="17">- #42 Add JSON output - minor</text>
+  <text x="34" y="552" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="17">- #43 Rename config keys - major</text>
+</svg>

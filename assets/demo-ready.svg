@@ -1,0 +1,20 @@
+<svg width="960" height="520" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ReleaseLint ready report demo</title>
+  <desc id="desc">A terminal-style screenshot showing a clean ReleaseLint report with zero blockers and zero warnings.</desc>
+  <rect width="960" height="520" rx="18" fill="#0d1117"/>
+  <rect x="0" y="0" width="960" height="44" rx="18" fill="#161b22"/>
+  <circle cx="28" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="50" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="72" cy="22" r="6" fill="#27c93f"/>
+  <text x="104" y="28" fill="#8b949e" font-family="Consolas, Menlo, monospace" font-size="14">ReleaseLint demo - ready</text>
+  <text x="34" y="88" fill="#7ee787" font-family="Consolas, Menlo, monospace" font-size="18">$ npm run check:passing</text>
+  <text x="34" y="136" fill="#f0f6fc" font-family="Consolas, Menlo, monospace" font-size="24" font-weight="700"># ReleaseLint Report</text>
+  <text x="34" y="184" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="18">Repository: example/widgets</text>
+  <text x="34" y="216" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="18">Range: v1.2.0...main</text>
+  <text x="34" y="248" fill="#7ee787" font-family="Consolas, Menlo, monospace" font-size="18" font-weight="700">Status: Ready</text>
+  <text x="34" y="304" fill="#f0f6fc" font-family="Consolas, Menlo, monospace" font-size="22" font-weight="700">## Summary</text>
+  <text x="34" y="352" fill="#c9d1d9" font-family="Consolas, Menlo, monospace" font-size="18">- Recommended bump: patch</text>
+  <text x="34" y="384" fill="#7ee787" font-family="Consolas, Menlo, monospace" font-size="18">- Blockers: 0</text>
+  <text x="34" y="416" fill="#7ee787" font-family="Consolas, Menlo, monospace" font-size="18">- Warnings: 0</text>
+  <text x="34" y="472" fill="#8b949e" font-family="Consolas, Menlo, monospace" font-size="16">Pull request evidence: #45 patch, #46 none</text>
+</svg>

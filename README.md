@@ -8,6 +8,8 @@ It is not a release-note generator, an AI assistant, or an automatic publishing 
 
 ## Quick Demo
 
+ReleaseLint turns GitHub release evidence into a CI-friendly readiness report:
+
 ```mermaid
 flowchart LR
   A["Merged PRs"] --> D["ReleaseLint"]
@@ -19,27 +21,19 @@ flowchart LR
   D --> H["Markdown or JSON report"]
 ```
 
-Run a clean fixture:
+### Ready release
+
+![ReleaseLint ready report](assets/demo-ready.svg)
+
+Run the clean fixture:
 
 ```bash
 npm run check:passing
 ```
 
-Example output:
+### Release with blockers
 
-```text
-# ReleaseLint Report
-
-Repository: example/widgets
-Range: v1.2.0...main
-Status: Ready
-
-## Summary
-
-- Recommended bump: patch
-- Blockers: 0
-- Warnings: 0
-```
+![ReleaseLint blockers report](assets/demo-blockers.svg)
 
 Run a fixture with release-readiness problems:
 
@@ -48,6 +42,13 @@ npm run check
 ```
 
 ReleaseLint will report blockers such as missing release labels or missing migration notes for breaking changes.
+
+### Typical workflow
+
+1. Add `.releaselint.json` to your repository.
+2. Make sure pull requests use release labels such as `feature`, `fix`, `docs`, or `breaking-change`.
+3. Run ReleaseLint locally or in GitHub Actions before cutting a release.
+4. Fix blockers before publishing the tag.
 
 ## Why
 
