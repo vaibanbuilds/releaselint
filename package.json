@@ -1,0 +1,25 @@
+{
+  "name": "releaselint",
+  "version": "0.1.0",
+  "description": "Release readiness linter for GitHub projects.",
+  "type": "module",
+  "bin": {
+    "releaselint": "./src/cli.js"
+  },
+  "scripts": {
+    "check": "node src/cli.js check --fixture fixtures/sample-release.json --format markdown --no-fail",
+    "check:json": "node src/cli.js check --fixture fixtures/sample-release.json --format json --no-fail"
+  },
+  "keywords": [
+    "release",
+    "github",
+    "changelog",
+    "semver",
+    "ci",
+    "lint"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

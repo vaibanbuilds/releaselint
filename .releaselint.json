@@ -1,0 +1,15 @@
+{
+  "labels": {
+    "major": ["breaking-change", "breaking"],
+    "minor": ["feature", "feat", "enhancement"],
+    "patch": ["bug", "bugfix", "fix"],
+    "none": ["docs", "documentation", "chore", "internal", "test"]
+  },
+  "requirements": {
+    "requireReleaseLabel": true,
+    "requireMigrationNotesForBreaking": true,
+    "requireLinkedIssueForClosedIssues": true
+  },
+  "migrationNoteMarkers": ["migration", "breaking change", "upgrade notes"],
+  "issueLinkPatterns": ["fixes #", "closes #", "resolves #"]
+}

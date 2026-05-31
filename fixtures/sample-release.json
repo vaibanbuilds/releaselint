@@ -1,0 +1,50 @@
+{
+  "repo": "example/widgets",
+  "sinceTag": "v1.2.0",
+  "headRef": "main",
+  "commits": [
+    {
+      "sha": "abc123",
+      "message": "feat: add JSON output",
+      "url": "https://github.com/example/widgets/commit/abc123"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 42,
+      "title": "Add JSON output",
+      "labels": ["feature"],
+      "body": "Adds machine-readable JSON reports.",
+      "url": "https://github.com/example/widgets/pull/42",
+      "mergedAt": "2026-05-20T10:00:00Z",
+      "author": "contributor-a"
+    },
+    {
+      "number": 43,
+      "title": "Rename config keys",
+      "labels": ["breaking-change"],
+      "body": "Renames the releaseLabels key.",
+      "url": "https://github.com/example/widgets/pull/43",
+      "mergedAt": "2026-05-21T10:00:00Z",
+      "author": "contributor-b"
+    },
+    {
+      "number": 44,
+      "title": "Update internal fixture",
+      "labels": [],
+      "body": "Updates test data.",
+      "url": "https://github.com/example/widgets/pull/44",
+      "mergedAt": "2026-05-22T10:00:00Z",
+      "author": "maintainer"
+    }
+  ],
+  "closedIssues": [
+    {
+      "number": 15,
+      "title": "JSON reports for CI",
+      "labels": ["enhancement"],
+      "body": "This was closed after the implementation landed.",
+      "url": "https://github.com/example/widgets/issues/15"
+    }
+  ]
+}

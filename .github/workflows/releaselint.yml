@@ -1,0 +1,24 @@
+name: Release readiness
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      since-tag:
+        description: Base tag to check from
+        required: true
+        default: v0.1.0
+
+jobs:
+  releaselint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          since-tag: ${{ github.event.inputs.since-tag || 'v0.1.0' }}

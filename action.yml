@@ -1,0 +1,25 @@
+name: ReleaseLint
+description: Check whether a GitHub project is ready to release.
+author: vaibanbuilds
+inputs:
+  repo:
+    description: Repository in owner/name format.
+    required: false
+  since-tag:
+    description: Base tag to compare against.
+    required: true
+  config:
+    description: Path to .releaselint.json.
+    required: false
+    default: .releaselint.json
+  token:
+    description: GitHub token.
+    required: false
+    default: ${{ github.token }}
+  format:
+    description: Output format, markdown or json.
+    required: false
+    default: markdown
+runs:
+  using: node20
+  main: src/action.js
