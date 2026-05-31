@@ -1,5 +1,7 @@
 # ReleaseLint
 
+[简体中文](README.zh-CN.md)
+
 ReleaseLint is a release readiness linter for GitHub projects. It checks whether a release has enough evidence to ship before a maintainer cuts a tag.
 
 It is not a release-note generator, an AI assistant, or an automatic publishing tool. ReleaseLint focuses on deterministic checks that can run in CI.
