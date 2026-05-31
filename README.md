@@ -42,8 +42,14 @@ Useful options:
 ```bash
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
+
+The repository includes two fixtures:
+
+- `fixtures/sample-release.json` shows a release with blockers and warnings.
+- `fixtures/passing-release.json` and `fixtures/package-v1.2.1.json` show a release that is ready to ship.
 
 Set `GITHUB_TOKEN` to avoid GitHub API rate limits:
 

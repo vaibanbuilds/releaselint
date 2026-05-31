@@ -1,0 +1,48 @@
+{
+  "repo": "example/widgets",
+  "sinceTag": "v1.2.0",
+  "headRef": "main",
+  "commits": [
+    {
+      "sha": "def456",
+      "message": "fix: retry GitHub API calls on rate limits",
+      "url": "https://github.com/example/widgets/commit/def456"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 45,
+      "title": "Retry GitHub API calls on rate limits",
+      "labels": ["fix"],
+      "body": "Fixes #18 by retrying secondary-rate-limit responses.",
+      "url": "https://github.com/example/widgets/pull/45",
+      "mergedAt": "2026-05-24T10:00:00Z",
+      "author": "contributor-a"
+    },
+    {
+      "number": 46,
+      "title": "Document GitHub token setup",
+      "labels": ["docs"],
+      "body": "Closes #19 by documenting GITHUB_TOKEN usage.",
+      "url": "https://github.com/example/widgets/pull/46",
+      "mergedAt": "2026-05-25T10:00:00Z",
+      "author": "maintainer"
+    }
+  ],
+  "closedIssues": [
+    {
+      "number": 18,
+      "title": "Retry API calls when rate limited",
+      "labels": ["bug"],
+      "body": "Fixes #18 in PR #45.",
+      "url": "https://github.com/example/widgets/issues/18"
+    },
+    {
+      "number": 19,
+      "title": "Document token setup",
+      "labels": ["documentation"],
+      "body": "Closes #19 in PR #46.",
+      "url": "https://github.com/example/widgets/issues/19"
+    }
+  ]
+}

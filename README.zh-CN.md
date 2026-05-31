@@ -42,8 +42,14 @@ releaselint check --repo owner/name --since-tag v1.2.0
 ```bash
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
+
+仓库里包含两个 fixture：
+
+- `fixtures/sample-release.json` 展示带有 blocker 和 warning 的发布。
+- `fixtures/passing-release.json` 和 `fixtures/package-v1.2.1.json` 展示可以发布的通过示例。
 
 建议设置 `GITHUB_TOKEN`，避免 GitHub API 速率限制：
 

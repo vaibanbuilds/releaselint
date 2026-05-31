@@ -12,7 +12,7 @@ npm run check
 npm run check:json
 ```
 
-The sample fixture in `fixtures/sample-release.json` intentionally contains release-readiness problems so reports can show blockers and warnings.
+The sample fixture in `fixtures/sample-release.json` intentionally contains release-readiness problems so reports can show blockers and warnings. `fixtures/passing-release.json` and `fixtures/package-v1.2.1.json` show a clean release-readiness report.
 
 ## Pull Requests
 
