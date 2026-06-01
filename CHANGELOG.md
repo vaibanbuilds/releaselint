@@ -5,6 +5,7 @@
 - Improved linked issue detection by reading merged pull request bodies.
 - Added fixture coverage for PR-body issue links.
 - Documented linked issue marker behavior in English and Chinese READMEs.
+- Added visual README demos, CI fixture checks, and a copy-paste GitHub Action example.
 
 ## v0.1.0 - 2026-05-31
 

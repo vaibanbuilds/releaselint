@@ -1,0 +1,22 @@
+name: Release readiness
+
+on:
+  workflow_dispatch:
+    inputs:
+      since-tag:
+        description: Base tag to check from
+        required: true
+        default: v0.1.0
+
+jobs:
+  releaselint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: vaibanbuilds/releaselint@v0.1.1
+        with:
+          since-tag: ${{ inputs.since-tag }}

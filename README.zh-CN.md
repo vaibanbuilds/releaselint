@@ -103,6 +103,8 @@ GITHUB_TOKEN=ghp_xxx releaselint check --repo owner/name --since-tag v1.2.0
 
 ## GitHub Action
 
+可以直接复制的 workflow 示例见 [`examples/github-action`](examples/github-action)。
+
 ```yaml
 name: Release readiness
 
@@ -122,7 +124,7 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0
+      - uses: vaibanbuilds/releaselint@v0.1.1
         with:
           since-tag: ${{ inputs.since-tag }}
 ```
