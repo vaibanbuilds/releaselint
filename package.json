@@ -1,5 +1,5 @@
 {
-  "name": "releaselint",
+  "name": "@vaibanbuilds/releaselint",
   "version": "0.1.1",
   "description": "Release readiness linter for GitHub projects.",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/vaibanbuilds/releaselint/issues"
   },
   "bin": {
-    "releaselint": "./src/cli.js"
+    "releaselint": "src/cli.js"
   },
   "scripts": {
     "check": "node src/cli.js check --fixture fixtures/sample-release.json --format markdown --no-fail",

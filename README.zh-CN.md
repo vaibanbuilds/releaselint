@@ -65,7 +65,7 @@ ReleaseLint 把这些问题变成可以自动运行的发布门禁。
 ## 安装
 
 ```bash
-npm install -g releaselint
+npm install -g @vaibanbuilds/releaselint
 ```
 
 如果你是从仓库本地开发：

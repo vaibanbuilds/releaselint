@@ -6,6 +6,7 @@
 - Added fixture coverage for PR-body issue links.
 - Documented linked issue marker behavior in English and Chinese READMEs.
 - Added visual README demos, CI fixture checks, and a copy-paste GitHub Action example.
+- Published package under the scoped npm name `@vaibanbuilds/releaselint`.
 
 ## v0.1.0 - 2026-05-31
 

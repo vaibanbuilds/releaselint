@@ -65,7 +65,7 @@ ReleaseLint turns those questions into a repeatable gate.
 ## Install
 
 ```bash
-npm install -g releaselint
+npm install -g @vaibanbuilds/releaselint
 ```
 
 For local development from this repository:
