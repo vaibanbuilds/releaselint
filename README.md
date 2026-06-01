@@ -1,5 +1,9 @@
 # ReleaseLint
 
+[![npm version](https://img.shields.io/npm/v/@vaibanbuilds/releaselint.svg)](https://www.npmjs.com/package/@vaibanbuilds/releaselint)
+[![CI](https://github.com/vaibanbuilds/releaselint/actions/workflows/ci.yml/badge.svg)](https://github.com/vaibanbuilds/releaselint/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 [简体中文](README.zh-CN.md)
 
 ReleaseLint is a release readiness linter for GitHub projects. It checks whether a release has enough evidence to ship before a maintainer cuts a tag.
