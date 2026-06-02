@@ -91,6 +91,7 @@ releaselint check --repo owner/name --since-tag v1.2.0
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
 releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
+releaselint check --fixture fixtures/sample-release.json --annotations always
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
 
@@ -108,6 +109,8 @@ GITHUB_TOKEN=ghp_xxx releaselint check --repo owner/name --since-tag v1.2.0
 ## GitHub Action
 
 可以直接复制的 workflow 示例见 [`examples/github-action`](examples/github-action)。
+
+当 ReleaseLint 运行在 GitHub Actions 中时，blocker 会输出为 workflow error，warning 会输出为 workflow warning。本地 CLI 默认不会输出 annotations，除非使用 `--annotations always`。
 
 ```yaml
 name: Release readiness
@@ -166,6 +169,21 @@ ReleaseLint v0.1 会检查：
 - 已关闭 issue 应该链接到 PR 或 commit，除非标记为 `no-code-change`、`invalid`、`duplicate` 或 `wontfix`。
 
 ReleaseLint 会同时从 issue 正文和已合并 PR 正文中识别关联 issue，例如 `fixes #123`、`closes #123`、`resolves #123`。
+
+## GitHub Actions Annotations
+
+ReleaseLint 可以输出 workflow annotations：
+
+```text
+::error title=missing-release-label::PR #44 has no release label
+::warning title=closed-issue-without-link::Issue #15 is closed without an obvious PR or commit link
+```
+
+Annotation 模式：
+
+- `auto`：仅在 `GITHUB_ACTIONS=true` 时输出 annotations
+- `always`：总是输出 annotations
+- `never`：从不输出 annotations
 
 ## 设计原则
 

@@ -17,3 +17,4 @@ jobs:
       - run: npm run check
       - run: npm run check:json
       - run: npm run check:passing
+      - run: npm run check:annotations

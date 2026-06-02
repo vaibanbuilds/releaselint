@@ -91,6 +91,7 @@ Useful options:
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
 releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
+releaselint check --fixture fixtures/sample-release.json --annotations always
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
 
@@ -108,6 +109,8 @@ GITHUB_TOKEN=ghp_xxx releaselint check --repo owner/name --since-tag v1.2.0
 ## GitHub Action
 
 For a copy-paste workflow, see [`examples/github-action`](examples/github-action).
+
+When ReleaseLint runs in GitHub Actions, blockers are emitted as workflow errors and warnings are emitted as workflow warnings. Local CLI runs do not emit annotations unless `--annotations always` is used.
 
 ```yaml
 name: Release readiness
@@ -166,6 +169,21 @@ ReleaseLint v0.1 checks:
 - Closed issues should link to a PR or commit unless they are marked `no-code-change`, `invalid`, `duplicate`, or `wontfix`.
 
 ReleaseLint detects linked issues from both issue bodies and merged pull request bodies, including markers such as `fixes #123`, `closes #123`, and `resolves #123`.
+
+## GitHub Actions Annotations
+
+ReleaseLint can emit workflow annotations:
+
+```text
+::error title=missing-release-label::PR #44 has no release label
+::warning title=closed-issue-without-link::Issue #15 is closed without an obvious PR or commit link
+```
+
+Annotation modes:
+
+- `auto`: emit annotations only when `GITHUB_ACTIONS=true`
+- `always`: always emit annotations
+- `never`: never emit annotations
 
 ## Design Principles
 

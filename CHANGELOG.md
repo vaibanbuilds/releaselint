@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added GitHub Actions annotations for blockers and warnings.
+- Added `--annotations auto|always|never` for annotation control.
+
 ## v0.1.1 - 2026-05-31
 
 - Improved linked issue detection by reading merged pull request bodies.

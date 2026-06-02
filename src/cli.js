@@ -5,6 +5,7 @@ import { fetchReleaseContext } from "./github.js";
 import { loadConfig } from "./config.js";
 import { lintRelease } from "./rules.js";
 import { renderJson, renderMarkdown } from "./report.js";
+import { renderAnnotations, shouldEmitAnnotations } from "./annotations.js";
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
@@ -31,6 +32,10 @@ async function main() {
   const output = args.format === "json" ? renderJson(result) : renderMarkdown(result);
   process.stdout.write(`${output}\n`);
 
+  if (shouldEmitAnnotations(args.annotations) && result.findings.length > 0) {
+    process.stdout.write(`${renderAnnotations(result)}\n`);
+  }
+
   if (result.summary.blockers > 0 && !args.noFail) {
     process.exit(2);
   }
@@ -41,6 +46,7 @@ function parseArgs(argv) {
     command: argv[0],
     format: "markdown",
     versionFile: "package.json",
+    annotations: "auto",
   };
 
   for (let index = 1; index < argv.length; index += 1) {
@@ -53,12 +59,16 @@ function parseArgs(argv) {
     else if (arg === "--fixture") out.fixture = argv[++index];
     else if (arg === "--format") out.format = argv[++index];
     else if (arg === "--version-file") out.versionFile = argv[++index];
+    else if (arg === "--annotations") out.annotations = argv[++index];
     else if (arg === "--no-fail") out.noFail = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
 
   if (!["markdown", "json"].includes(out.format)) {
     throw new Error("--format must be markdown or json");
+  }
+  if (!["auto", "always", "never"].includes(out.annotations)) {
+    throw new Error("--annotations must be auto, always, or never");
   }
 
   return out;
@@ -84,6 +94,7 @@ Options:
   --fixture <path>            Read release context from a local JSON fixture
   --format <markdown|json>    Output format, defaults to markdown
   --version-file <path>       Version file to inspect, defaults to package.json
+  --annotations <mode>        Emit GitHub Actions annotations: auto, always, or never
   --no-fail                   Always exit 0 even when blockers are found
 `);
 }
