@@ -131,7 +131,7 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0.1.1
+      - uses: vaibanbuilds/releaselint@v0.1.2
         with:
           since-tag: ${{ inputs.since-tag }}
 ```

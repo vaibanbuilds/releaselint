@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v0.1.2 - 2026-06-03
 
 - Added GitHub Actions annotations for blockers and warnings.
 - Added `--annotations auto|always|never` for annotation control.
