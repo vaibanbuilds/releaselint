@@ -1,0 +1,4 @@
+interface:
+  display_name: "ReleaseLint Maintainer"
+  short_description: "Maintain ReleaseLint project context and release rhythm"
+  default_prompt: "Continue maintaining ReleaseLint from the current project context."
