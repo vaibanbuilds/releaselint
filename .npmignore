@@ -3,4 +3,5 @@ coverage/
 npm-debug.log*
 .DS_Store
 CODEX_HANDOFF.md
+CODEX_TRANSFER_DEPLOYMENT.zh-CN.md
 codex-skills/

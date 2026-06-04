@@ -86,6 +86,12 @@ For `v0.1.3`, when ready:
 
 ## How to Install the Skill on Another Computer
 
+For a full Chinese deployment walkthrough, see:
+
+```text
+CODEX_TRANSFER_DEPLOYMENT.zh-CN.md
+```
+
 This repository includes a portable skill at:
 
 ```text
