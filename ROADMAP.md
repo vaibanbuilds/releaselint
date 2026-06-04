@@ -2,20 +2,21 @@
 
 ReleaseLint is a release readiness linter for GitHub projects. The goal is to help maintainers make release gates repeatable, auditable, and CI-friendly.
 
-## v0.2
+## Completed in v0.1
 
-- Add GitHub Action annotations for blockers and warnings.
-- Support posting Markdown reports to release pull requests.
-- Improve linked issue detection across PR bodies and commit messages.
+- Added a clean passing fixture for documentation and tests.
+- Improved linked issue detection across issue bodies and merged PR bodies.
+- Added GitHub Actions annotations for blockers and warnings.
 
-## v0.3
+## Next
 
 - Support more version files beyond `package.json`.
+- Support posting Markdown reports to release pull requests.
+- Improve linked issue detection across commit messages.
+
+## Later
+
 - Add conventional commit checks.
-- Add a clean passing fixture for documentation and tests.
-
-## v0.4
-
 - Add monorepo package selection.
 - Support custom severity levels per rule.
 - Add optional AI-assisted drafting for migration notes and release notes, while keeping rule decisions deterministic.

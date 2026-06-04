@@ -196,6 +196,7 @@ Annotation modes:
 
 - Markdown comments on release PRs
 - More version file formats
+- Linked issue detection across commit messages
 - Monorepo package selection
 - Conventional commit checks
 - Optional AI-assisted migration-note and release-note drafting

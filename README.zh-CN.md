@@ -194,9 +194,9 @@ Annotation 模式：
 
 ## 路线图
 
-- 在 GitHub Action 中输出 annotations
 - 在 release PR 中评论 Markdown 报告
 - 支持更多版本文件格式
+- 从 commit message 中识别关联 issue
 - 支持 monorepo 包选择
 - 支持 conventional commit 检查
 - 可选的 AI 辅助迁移说明和 release notes 草稿
