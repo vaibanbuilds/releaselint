@@ -18,6 +18,8 @@
     "check": "node src/cli.js check --fixture fixtures/sample-release.json --format markdown --no-fail",
     "check:json": "node src/cli.js check --fixture fixtures/sample-release.json --format json --no-fail",
     "check:passing": "node src/cli.js check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json --format markdown --no-fail",
+    "check:pyproject": "node src/cli.js check --fixture fixtures/passing-release.json --version-file fixtures/pyproject.toml --format markdown --no-fail",
+    "check:cargo": "node src/cli.js check --fixture fixtures/passing-release.json --version-file fixtures/Cargo.toml --format markdown --no-fail",
     "check:annotations": "node src/cli.js check --fixture fixtures/sample-release.json --format markdown --annotations always --no-fail"
   },
   "keywords": [

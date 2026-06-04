@@ -1,9 +1,11 @@
 import { spawn } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
 const input = (name) => process.env[`INPUT_${name.toUpperCase().replaceAll("-", "_")}`] || "";
 const repo = input("repo") || process.env.GITHUB_REPOSITORY;
+const cliPath = fileURLToPath(new URL("./cli.js", import.meta.url));
 const args = [
-  new URL("./cli.js", import.meta.url).pathname,
+  cliPath,
   "check",
   "--repo",
   repo,
@@ -11,6 +13,8 @@ const args = [
   input("since-tag"),
   "--config",
   input("config") || ".releaselint.json",
+  "--version-file",
+  input("version-file") || "package.json",
   "--format",
   input("format") || "markdown",
 ];

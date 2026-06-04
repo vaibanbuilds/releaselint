@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { readVersion } from "./version-file.js";
 
 const semverRank = { none: 0, patch: 1, minor: 2, major: 3 };
 
@@ -84,7 +85,8 @@ async function checkVersionBump(sinceTag, recommendedBump, options) {
 
   try {
     const raw = await readFile(`${options.cwd || process.cwd()}/${options.versionFile}`, "utf8");
-    const current = JSON.parse(raw).version;
+    const current = readVersion(raw, options.versionFile);
+    if (!current) return null;
     const previous = sinceTag.replace(/^v/, "");
     if (!isExpectedBump(previous, current, recommendedBump)) {
       return warning(

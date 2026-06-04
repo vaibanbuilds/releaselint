@@ -1,0 +1,4 @@
+[project]
+name = "example-widgets"
+version = "1.2.1"
+description = "Fixture package for ReleaseLint."

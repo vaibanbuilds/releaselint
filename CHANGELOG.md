@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added version checks for `pyproject.toml` and `Cargo.toml`.
+- Fixed local GitHub Action wrapper execution on Windows.
+
 ## v0.1.2 - 2026-06-03
 
 - Added GitHub Actions annotations for blockers and warnings.

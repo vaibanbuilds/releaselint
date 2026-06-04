@@ -91,6 +91,8 @@ releaselint check --repo owner/name --since-tag v1.2.0
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
 releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/pyproject.toml
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/Cargo.toml
 releaselint check --fixture fixtures/sample-release.json --annotations always
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
@@ -99,6 +101,7 @@ releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 
 - `fixtures/sample-release.json` 展示带有 blocker 和 warning 的发布。
 - `fixtures/passing-release.json` 和 `fixtures/package-v1.2.1.json` 展示可以发布的通过示例。
+- `fixtures/pyproject.toml` 和 `fixtures/Cargo.toml` 覆盖 Python 和 Rust 版本文件。
 
 建议设置 `GITHUB_TOKEN`，避免 GitHub API 速率限制：
 
@@ -134,6 +137,7 @@ jobs:
       - uses: vaibanbuilds/releaselint@v0.1.2
         with:
           since-tag: ${{ inputs.since-tag }}
+          version-file: package.json
 ```
 
 ## 配置
@@ -165,7 +169,7 @@ ReleaseLint v0.1 会检查：
 - 已合并 PR 必须有 release label。
 - 标记为 breaking change 的 PR 必须包含迁移说明。
 - release label 会推导出 `major`、`minor`、`patch` 或 `none` 的版本建议。
-- 如果存在本地 `package.json`，版本号应与推荐版本变更匹配。
+- 如果存在本地 `package.json`、`pyproject.toml` 或 `Cargo.toml`，版本号应与推荐版本变更匹配。
 - 已关闭 issue 应该链接到 PR 或 commit，除非标记为 `no-code-change`、`invalid`、`duplicate` 或 `wontfix`。
 
 ReleaseLint 会同时从 issue 正文和已合并 PR 正文中识别关联 issue，例如 `fixes #123`、`closes #123`、`resolves #123`。
@@ -195,7 +199,7 @@ Annotation 模式：
 ## 路线图
 
 - 在 release PR 中评论 Markdown 报告
-- 支持更多版本文件格式
+- 支持更多生态的版本文件格式
 - 从 commit message 中识别关联 issue
 - 支持 monorepo 包选择
 - 支持 conventional commit 检查

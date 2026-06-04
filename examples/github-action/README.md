@@ -28,3 +28,5 @@ permissions:
 ## Configuration
 
 Add a `.releaselint.json` file to customize label mapping and release-readiness requirements.
+
+Set `version-file` to `package.json`, `pyproject.toml`, or `Cargo.toml` depending on the project.

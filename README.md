@@ -91,6 +91,8 @@ Useful options:
 releaselint check --repo owner/name --since-tag v1.2.0 --format json
 releaselint check --fixture fixtures/sample-release.json
 releaselint check --fixture fixtures/passing-release.json --version-file fixtures/package-v1.2.1.json
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/pyproject.toml
+releaselint check --fixture fixtures/passing-release.json --version-file fixtures/Cargo.toml
 releaselint check --fixture fixtures/sample-release.json --annotations always
 releaselint check --repo owner/name --since-tag v1.2.0 --no-fail
 ```
@@ -99,6 +101,7 @@ The repository includes two fixtures:
 
 - `fixtures/sample-release.json` shows a release with blockers and warnings.
 - `fixtures/passing-release.json` and `fixtures/package-v1.2.1.json` show a release that is ready to ship.
+- `fixtures/pyproject.toml` and `fixtures/Cargo.toml` cover Python and Rust version files.
 
 Set `GITHUB_TOKEN` to avoid GitHub API rate limits:
 
@@ -134,6 +137,7 @@ jobs:
       - uses: vaibanbuilds/releaselint@v0.1.2
         with:
           since-tag: ${{ inputs.since-tag }}
+          version-file: package.json
 ```
 
 ## Configuration
@@ -165,7 +169,7 @@ ReleaseLint v0.1 checks:
 - Merged PRs must have a release label.
 - Breaking PRs must include migration notes.
 - Release labels produce a `major`, `minor`, `patch`, or `none` bump recommendation.
-- Local `package.json` version should match the recommended bump when available.
+- Local `package.json`, `pyproject.toml`, or `Cargo.toml` version should match the recommended bump when available.
 - Closed issues should link to a PR or commit unless they are marked `no-code-change`, `invalid`, `duplicate`, or `wontfix`.
 
 ReleaseLint detects linked issues from both issue bodies and merged pull request bodies, including markers such as `fixes #123`, `closes #123`, and `resolves #123`.
@@ -195,7 +199,7 @@ Annotation modes:
 ## Roadmap
 
 - Markdown comments on release PRs
-- More version file formats
+- Additional ecosystem version files
 - Linked issue detection across commit messages
 - Monorepo package selection
 - Conventional commit checks

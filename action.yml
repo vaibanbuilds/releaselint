@@ -12,6 +12,10 @@ inputs:
     description: Path to .releaselint.json.
     required: false
     default: .releaselint.json
+  version-file:
+    description: Version file to inspect. Supports package.json, pyproject.toml, and Cargo.toml.
+    required: false
+    default: package.json
   token:
     description: GitHub token.
     required: false
