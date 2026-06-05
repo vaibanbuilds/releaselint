@@ -115,6 +115,8 @@ GITHUB_TOKEN=ghp_xxx releaselint check --repo owner/name --since-tag v1.2.0
 
 当 ReleaseLint 运行在 GitHub Actions 中时，blocker 会输出为 workflow error，warning 会输出为 workflow warning。本地 CLI 默认不会输出 annotations，除非使用 `--annotations always`。
 
+在 `pull_request` workflow 中设置 `comment: true` 后，ReleaseLint 会在 release PR 下发布或更新一条固定的 Markdown 报告评论。此功能默认关闭；因为 GitHub 将 PR 评论存储为 issue comments，所以需要 `issues: write` 权限。
+
 ```yaml
 name: Release readiness
 
@@ -134,10 +136,26 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0.1.2
+      - uses: vaibanbuilds/releaselint@v0.1.3
         with:
           since-tag: ${{ inputs.since-tag }}
           version-file: package.json
+```
+
+如果需要 PR 评论报告：
+
+```yaml
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+steps:
+  - uses: actions/checkout@v4
+  - uses: vaibanbuilds/releaselint@v0.1.3
+    with:
+      since-tag: v1.2.0
+      comment: true
 ```
 
 ## 配置
@@ -198,7 +216,6 @@ Annotation 模式：
 
 ## 路线图
 
-- 在 release PR 中评论 Markdown 报告
 - 支持更多生态的版本文件格式
 - 从 commit message 中识别关联 issue
 - 支持 monorepo 包选择

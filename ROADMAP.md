@@ -7,9 +7,6 @@ ReleaseLint is a release readiness linter for GitHub projects. The goal is to he
 - Added a clean passing fixture for documentation and tests.
 - Improved linked issue detection across issue bodies and merged PR bodies.
 - Added GitHub Actions annotations for blockers and warnings.
-
-## Unreleased
-
 - Added version checks for `pyproject.toml` and `Cargo.toml`.
 - Fixed local GitHub Action wrapper execution on Windows.
 - Added opt-in sticky Markdown reports on release pull requests.

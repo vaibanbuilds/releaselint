@@ -115,6 +115,8 @@ For a copy-paste workflow, see [`examples/github-action`](examples/github-action
 
 When ReleaseLint runs in GitHub Actions, blockers are emitted as workflow errors and warnings are emitted as workflow warnings. Local CLI runs do not emit annotations unless `--annotations always` is used.
 
+Set `comment: true` on `pull_request` workflows to post or update a single sticky Markdown report comment on the release PR. This is disabled by default and requires `issues: write` permission because GitHub stores pull request comments as issue comments.
+
 ```yaml
 name: Release readiness
 
@@ -134,10 +136,26 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0.1.2
+      - uses: vaibanbuilds/releaselint@v0.1.3
         with:
           since-tag: ${{ inputs.since-tag }}
           version-file: package.json
+```
+
+For pull request comments:
+
+```yaml
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+steps:
+  - uses: actions/checkout@v4
+  - uses: vaibanbuilds/releaselint@v0.1.3
+    with:
+      since-tag: v1.2.0
+      comment: true
 ```
 
 ## Configuration
@@ -198,7 +216,6 @@ Annotation modes:
 
 ## Roadmap
 
-- Markdown comments on release PRs
 - Additional ecosystem version files
 - Linked issue detection across commit messages
 - Monorepo package selection

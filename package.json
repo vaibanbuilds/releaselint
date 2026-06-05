@@ -1,6 +1,6 @@
 {
   "name": "@vaibanbuilds/releaselint",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Release readiness linter for GitHub projects.",
   "type": "module",
   "homepage": "https://github.com/vaibanbuilds/releaselint#readme",
