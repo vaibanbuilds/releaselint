@@ -79,6 +79,24 @@ npm install
 npm run check
 ```
 
+## 发布到 npm
+
+仓库包含一个 `Publish` workflow，用于发布 npm 版本。推送 `v*.*.*` tag 时它会运行，并在发布前确认 tag 与 `package.json` 版本一致。
+
+如果使用 npm trusted publishing，请在 npmjs.com 的包设置中配置：
+
+- Organization or user：`vaibanbuilds`
+- Repository：`releaselint`
+- Workflow filename：`publish.yml`
+- Allowed action：`npm publish`
+
+配置完成后，维护者可以这样发布版本：
+
+```bash
+git tag v0.1.3
+git push origin v0.1.3
+```
+
 ## CLI 用法
 
 ```bash

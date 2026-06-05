@@ -79,6 +79,24 @@ npm install
 npm run check
 ```
 
+## Release Publishing
+
+The repository includes a `Publish` workflow for npm releases. It runs when a `v*.*.*` tag is pushed and verifies that the tag matches `package.json` before publishing.
+
+For npm trusted publishing, configure the package on npmjs.com with:
+
+- Organization or user: `vaibanbuilds`
+- Repository: `releaselint`
+- Workflow filename: `publish.yml`
+- Allowed action: `npm publish`
+
+After that, maintainers can publish a release with:
+
+```bash
+git tag v0.1.3
+git push origin v0.1.3
+```
+
 ## CLI
 
 ```bash
