@@ -24,6 +24,10 @@ inputs:
     description: Output format, markdown or json.
     required: false
     default: markdown
+  comment:
+    description: Post or update a sticky Markdown report comment on pull request events.
+    required: false
+    default: "false"
 runs:
   using: node20
   main: src/action.js
