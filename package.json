@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/vaibanbuilds/releaselint/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "releaselint": "src/cli.js"
   },

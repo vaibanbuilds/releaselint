@@ -6,6 +6,7 @@
 
 - Added version checks for `pyproject.toml` and `Cargo.toml`.
 - Added opt-in sticky Markdown report comments for GitHub pull requests.
+- Added a trusted-publishing workflow for npm releases from version tags.
 - Fixed local GitHub Action wrapper execution on Windows.
 
 ## v0.1.2 - 2026-06-03
