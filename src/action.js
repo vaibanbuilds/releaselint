@@ -2,7 +2,11 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { currentPullRequestNumber, isTruthy, upsertPullRequestComment } from "./pr-comment.js";
 
-const input = (name) => process.env[`INPUT_${name.toUpperCase().replaceAll("-", "_")}`] || "";
+const input = (name) => {
+  const rawKey = `INPUT_${name.toUpperCase()}`;
+  const normalizedKey = rawKey.replaceAll("-", "_");
+  return process.env[normalizedKey] || process.env[rawKey] || "";
+};
 const repo = input("repo") || process.env.GITHUB_REPOSITORY;
 const format = input("format") || "markdown";
 const shouldComment = isTruthy(input("comment"));
