@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added version checks for `pyproject.toml` and `Cargo.toml`.
+- Added opt-in sticky Markdown report comments for GitHub pull requests.
 - Fixed local GitHub Action wrapper execution on Windows.
 
 ## v0.1.2 - 2026-06-03
