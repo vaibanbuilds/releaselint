@@ -79,6 +79,13 @@ npm install
 npm run check
 ```
 
+Create a starter config:
+
+```bash
+releaselint init
+releaselint init --print
+```
+
 ## Release Publishing
 
 The repository includes a `Publish` workflow for npm releases. It runs when a `v*.*.*` tag is pushed and verifies that the tag matches `package.json` before publishing.
