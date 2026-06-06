@@ -79,6 +79,13 @@ npm install
 npm run check
 ```
 
+生成初始配置：
+
+```bash
+releaselint init
+releaselint init --print
+```
+
 ## 发布到 npm
 
 仓库包含一个 `Publish` workflow，用于发布 npm 版本。推送 `v*.*.*` tag 时它会运行，并在发布前确认 tag 与 `package.json` 版本一致。

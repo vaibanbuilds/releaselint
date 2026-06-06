@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `releaselint init` for creating a starter `.releaselint.json` config.
+
 ## v0.1.3 - 2026-06-05
 
 - Added version checks for `pyproject.toml` and `Cargo.toml`.

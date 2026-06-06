@@ -2,7 +2,7 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fetchReleaseContext } from "./github.js";
-import { loadConfig } from "./config.js";
+import { loadConfig, renderDefaultConfig, writeDefaultConfig } from "./config.js";
 import { lintRelease } from "./rules.js";
 import { renderJson, renderMarkdown } from "./report.js";
 import { renderAnnotations, shouldEmitAnnotations } from "./annotations.js";
@@ -10,9 +10,19 @@ import { renderAnnotations, shouldEmitAnnotations } from "./annotations.js";
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  if (args.command !== "check" || args.help) {
+  if (args.help) {
     printHelp();
-    process.exit(args.help ? 0 : 1);
+    process.exit(0);
+  }
+
+  if (args.command === "init") {
+    await initConfig(args);
+    return;
+  }
+
+  if (args.command !== "check") {
+    printHelp();
+    process.exit(1);
   }
 
   const config = await loadConfig(args.config);
@@ -41,9 +51,28 @@ async function main() {
   }
 }
 
+async function initConfig(args) {
+  if (args.print) {
+    process.stdout.write(renderDefaultConfig());
+    return;
+  }
+
+  try {
+    await writeDefaultConfig(args.config, { force: args.force });
+  } catch (error) {
+    if (error.code === "EEXIST") {
+      throw new Error(`${args.config} already exists; use --force to overwrite it`);
+    }
+    throw error;
+  }
+
+  process.stdout.write(`Created ${args.config}\n`);
+}
+
 function parseArgs(argv) {
   const out = {
     command: argv[0],
+    config: ".releaselint.json",
     format: "markdown",
     versionFile: "package.json",
     annotations: "auto",
@@ -61,6 +90,8 @@ function parseArgs(argv) {
     else if (arg === "--version-file") out.versionFile = argv[++index];
     else if (arg === "--annotations") out.annotations = argv[++index];
     else if (arg === "--no-fail") out.noFail = true;
+    else if (arg === "--force") out.force = true;
+    else if (arg === "--print") out.print = true;
     else throw new Error(`Unknown argument: ${arg}`);
   }
 
@@ -83,10 +114,13 @@ function printHelp() {
   process.stdout.write(`ReleaseLint
 
 Usage:
+  releaselint init
   releaselint check --repo owner/name --since-tag v1.2.0
   releaselint check --fixture fixtures/sample-release.json
 
 Options:
+  --force                    Overwrite an existing .releaselint.json when using init
+  --print                    Print the default config instead of writing it
   --repo <owner/name>          GitHub repository to inspect
   --since-tag <tag>           Base tag for release readiness checks
   --token <token>             GitHub token, defaults to GITHUB_TOKEN
