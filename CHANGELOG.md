@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added `releaselint config validate` for checking config files before release checks.
 - Added `releaselint init` for creating a starter `.releaselint.json` config.
 
 ## v0.1.3 - 2026-06-05

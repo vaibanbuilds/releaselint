@@ -24,7 +24,8 @@
     "check:pyproject": "node src/cli.js check --fixture fixtures/passing-release.json --version-file fixtures/pyproject.toml --format markdown --no-fail",
     "check:cargo": "node src/cli.js check --fixture fixtures/passing-release.json --version-file fixtures/Cargo.toml --format markdown --no-fail",
     "check:annotations": "node src/cli.js check --fixture fixtures/sample-release.json --format markdown --annotations always --no-fail",
-    "check:init": "tmpdir=$(mktemp -d) && node src/cli.js init --config \"$tmpdir/.releaselint.json\" && ! node src/cli.js init --config \"$tmpdir/.releaselint.json\" && node src/cli.js init --config \"$tmpdir/.releaselint.json\" --force && node src/cli.js init --print >\"$tmpdir/printed.json\" && node -e 'JSON.parse(require(\"fs\").readFileSync(process.argv[1], \"utf8\")); JSON.parse(require(\"fs\").readFileSync(process.argv[2], \"utf8\"));' \"$tmpdir/.releaselint.json\" \"$tmpdir/printed.json\""
+    "check:init": "tmpdir=$(mktemp -d) && node src/cli.js init --config \"$tmpdir/.releaselint.json\" && ! node src/cli.js init --config \"$tmpdir/.releaselint.json\" && node src/cli.js init --config \"$tmpdir/.releaselint.json\" --force && node src/cli.js init --print >\"$tmpdir/printed.json\" && node -e 'JSON.parse(require(\"fs\").readFileSync(process.argv[1], \"utf8\")); JSON.parse(require(\"fs\").readFileSync(process.argv[2], \"utf8\"));' \"$tmpdir/.releaselint.json\" \"$tmpdir/printed.json\"",
+    "check:config": "node src/cli.js config validate --config fixtures/releaselint-config.valid.json && ! node src/cli.js config validate --config fixtures/releaselint-config.invalid.json"
   },
   "keywords": [
     "release",

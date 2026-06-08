@@ -2,7 +2,7 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fetchReleaseContext } from "./github.js";
-import { loadConfig, renderDefaultConfig, writeDefaultConfig } from "./config.js";
+import { loadConfig, readConfig, renderDefaultConfig, writeDefaultConfig } from "./config.js";
 import { lintRelease } from "./rules.js";
 import { renderJson, renderMarkdown } from "./report.js";
 import { renderAnnotations, shouldEmitAnnotations } from "./annotations.js";
@@ -17,6 +17,11 @@ async function main() {
 
   if (args.command === "init") {
     await initConfig(args);
+    return;
+  }
+
+  if (args.command === "config") {
+    await configCommand(args);
     return;
   }
 
@@ -51,6 +56,15 @@ async function main() {
   }
 }
 
+async function configCommand(args) {
+  if (args.subcommand !== "validate") {
+    throw new Error("config command requires the validate subcommand");
+  }
+
+  await readConfig(args.config);
+  process.stdout.write(`${args.config} is valid\n`);
+}
+
 async function initConfig(args) {
   if (args.print) {
     process.stdout.write(renderDefaultConfig());
@@ -72,13 +86,14 @@ async function initConfig(args) {
 function parseArgs(argv) {
   const out = {
     command: argv[0],
+    subcommand: argv[0] === "config" ? argv[1] : undefined,
     config: ".releaselint.json",
     format: "markdown",
     versionFile: "package.json",
     annotations: "auto",
   };
 
-  for (let index = 1; index < argv.length; index += 1) {
+  for (let index = out.command === "config" ? 2 : 1; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === "--help" || arg === "-h") out.help = true;
     else if (arg === "--repo") out.repo = argv[++index];
@@ -115,6 +130,7 @@ function printHelp() {
 
 Usage:
   releaselint init
+  releaselint config validate
   releaselint check --repo owner/name --since-tag v1.2.0
   releaselint check --fixture fixtures/sample-release.json
 

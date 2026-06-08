@@ -1,0 +1,11 @@
+{
+  "labels": {
+    "minor": ["feature", "enhancement"],
+    "patch": ["fix"]
+  },
+  "requirements": {
+    "requireReleaseLabel": true
+  },
+  "migrationNoteMarkers": ["migration"],
+  "issueLinkPatterns": ["fixes #"]
+}

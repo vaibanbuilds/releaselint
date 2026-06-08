@@ -21,3 +21,4 @@ jobs:
       - run: npm run check:cargo
       - run: npm run check:annotations
       - run: npm run check:init
+      - run: npm run check:config
