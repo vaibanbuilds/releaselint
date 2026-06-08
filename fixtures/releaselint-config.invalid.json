@@ -1,0 +1,10 @@
+{
+  "unexpected": true,
+  "labels": {
+    "minor": []
+  },
+  "requirements": {
+    "requireReleaseLabel": "yes"
+  },
+  "issueLinkPatterns": [""]
+}
