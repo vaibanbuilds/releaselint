@@ -1,0 +1,24 @@
+{
+  "repo": "example/widgets",
+  "sinceTag": "v1.2.0",
+  "headRef": "main",
+  "commits": [
+    {
+      "sha": "bad001",
+      "message": "Update README with config validation docs",
+      "url": "https://github.com/example/widgets/commit/bad001"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 51,
+      "title": "Document config validation",
+      "labels": ["docs"],
+      "body": "Documents the new `releaselint config validate` command.",
+      "url": "https://github.com/example/widgets/pull/51",
+      "mergedAt": "2026-05-29T10:00:00Z",
+      "author": "maintainer"
+    }
+  ],
+  "closedIssues": []
+}

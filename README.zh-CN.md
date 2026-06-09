@@ -198,7 +198,8 @@ steps:
   "requirements": {
     "requireReleaseLabel": true,
     "requireMigrationNotesForBreaking": true,
-    "requireLinkedIssueForClosedIssues": true
+    "requireLinkedIssueForClosedIssues": true,
+    "requireConventionalCommits": true
   },
   "migrationNoteMarkers": ["migration", "breaking change", "upgrade notes"],
   "issueLinkPatterns": ["fixes #", "closes #", "resolves #"]
@@ -211,6 +212,7 @@ ReleaseLint v0.1 会检查：
 
 - 已合并 PR 必须有 release label。
 - 标记为 breaking change 的 PR 必须包含迁移说明。
+- 非 merge commit 的 message 应符合 conventional commit 格式。
 - release label 会推导出 `major`、`minor`、`patch` 或 `none` 的版本建议。
 - 如果存在本地 `package.json`、`pyproject.toml` 或 `Cargo.toml`，版本号应与推荐版本变更匹配。
 - 已关闭 issue 应该链接到 PR 或 commit，除非标记为 `no-code-change`、`invalid`、`duplicate` 或 `wontfix`。
@@ -244,7 +246,6 @@ Annotation 模式：
 - 支持更多生态的版本文件格式
 - 从 commit message 中识别关联 issue
 - 支持 monorepo 包选择
-- 支持 conventional commit 检查
 - 可选的 AI 辅助迁移说明和 release notes 草稿
 
 ## License

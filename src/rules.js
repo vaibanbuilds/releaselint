@@ -31,6 +31,11 @@ export async function lintRelease(context, config, options = {}) {
     }
   }
 
+  if (config.requirements.requireConventionalCommits) {
+    const commitFinding = checkConventionalCommits(context.commits || []);
+    if (commitFinding) findings.push(commitFinding);
+  }
+
   if (config.requirements.requireLinkedIssueForClosedIssues) {
     for (const issue of context.closedIssues || []) {
       if (hasAnyLabel(issue.labels, ["no-code-change", "invalid", "duplicate", "wontfix"])) continue;
@@ -80,6 +85,24 @@ function highestBump(bumps) {
   }, "none");
 }
 
+function checkConventionalCommits(commits) {
+  const invalid = (commits || []).filter((commit) => !isConventionalCommit(commit.message || ""));
+  if (invalid.length === 0) return null;
+
+  const examples = invalid
+    .slice(0, 3)
+    .map((commit) => `"${firstLine(commit.message || "")}"`)
+    .join(", ");
+  const suffix = invalid.length > 3 ? ", ..." : "";
+  const noun = invalid.length === 1 ? "commit message" : "commit messages";
+
+  return blocker(
+    "non-conventional-commit-message",
+    `${invalid.length} ${noun} do not follow conventional commit format: ${examples}${suffix}`,
+    invalid[0].url,
+  );
+}
+
 async function checkVersionBump(sinceTag, recommendedBump, options) {
   if (!options.versionFile || recommendedBump === "none") return null;
 
@@ -126,6 +149,18 @@ function hasAnyLabel(labels, expected) {
 function hasMarker(text, markers) {
   const normalized = (text || "").toLowerCase();
   return markers.some((marker) => normalized.includes(marker.toLowerCase()));
+}
+
+function isConventionalCommit(message) {
+  const subject = firstLine(message).trim();
+  if (!subject) return false;
+  if (/^Merge pull request #\d+/i.test(subject)) return true;
+  if (/^Merge branch /i.test(subject)) return true;
+  return /^[a-z]+(?:\([\w./-]+\))?!?: .+/.test(subject);
+}
+
+function firstLine(message) {
+  return String(message || "").split(/\r?\n/, 1)[0];
 }
 
 function linkedIssuesFromPullRequests(pullRequests, markers) {

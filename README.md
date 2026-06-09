@@ -198,7 +198,8 @@ Create `.releaselint.json`:
   "requirements": {
     "requireReleaseLabel": true,
     "requireMigrationNotesForBreaking": true,
-    "requireLinkedIssueForClosedIssues": true
+    "requireLinkedIssueForClosedIssues": true,
+    "requireConventionalCommits": true
   },
   "migrationNoteMarkers": ["migration", "breaking change", "upgrade notes"],
   "issueLinkPatterns": ["fixes #", "closes #", "resolves #"]
@@ -211,6 +212,7 @@ ReleaseLint v0.1 checks:
 
 - Merged PRs must have a release label.
 - Breaking PRs must include migration notes.
+- Non-merge commit messages should follow the conventional commit format.
 - Release labels produce a `major`, `minor`, `patch`, or `none` bump recommendation.
 - Local `package.json`, `pyproject.toml`, or `Cargo.toml` version should match the recommended bump when available.
 - Closed issues should link to a PR or commit unless they are marked `no-code-change`, `invalid`, `duplicate`, or `wontfix`.
@@ -244,7 +246,6 @@ Annotation modes:
 - Additional ecosystem version files
 - Linked issue detection across commit messages
 - Monorepo package selection
-- Conventional commit checks
 - Optional AI-assisted migration-note and release-note drafting
 
 ## License
