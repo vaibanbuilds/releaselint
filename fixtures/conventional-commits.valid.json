@@ -1,0 +1,24 @@
+{
+  "repo": "example/widgets",
+  "sinceTag": "v1.2.0",
+  "headRef": "main",
+  "commits": [
+    {
+      "sha": "abc123",
+      "message": "feat: add config validation command",
+      "url": "https://github.com/example/widgets/commit/abc123"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 50,
+      "title": "Add config validation command",
+      "labels": ["feature"],
+      "body": "Adds `releaselint config validate`.",
+      "url": "https://github.com/example/widgets/pull/50",
+      "mergedAt": "2026-05-28T10:00:00Z",
+      "author": "contributor-a"
+    }
+  ],
+  "closedIssues": []
+}

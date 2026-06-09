@@ -6,6 +6,7 @@ const requirementKeys = [
   "requireReleaseLabel",
   "requireMigrationNotesForBreaking",
   "requireLinkedIssueForClosedIssues",
+  "requireConventionalCommits",
 ];
 
 export const defaultConfig = {
@@ -19,6 +20,7 @@ export const defaultConfig = {
     requireReleaseLabel: true,
     requireMigrationNotesForBreaking: true,
     requireLinkedIssueForClosedIssues: true,
+    requireConventionalCommits: false,
   },
   migrationNoteMarkers: ["migration", "breaking change", "upgrade notes"],
   issueLinkPatterns: ["fixes #", "closes #", "resolves #"],
