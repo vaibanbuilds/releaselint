@@ -100,8 +100,8 @@ releaselint init --print
 配置完成后，维护者可以这样发布版本：
 
 ```bash
-git tag v0.1.3
-git push origin v0.1.3
+git tag v0.1.4
+git push origin v0.1.4
 ```
 
 ## CLI 用法
@@ -161,7 +161,7 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0.1.3
+      - uses: vaibanbuilds/releaselint@v0.1.4
         with:
           since-tag: ${{ inputs.since-tag }}
           version-file: package.json
@@ -177,7 +177,7 @@ permissions:
 
 steps:
   - uses: actions/checkout@v4
-  - uses: vaibanbuilds/releaselint@v0.1.3
+  - uses: vaibanbuilds/releaselint@v0.1.4
     with:
       since-tag: v1.2.0
       comment: true
@@ -218,6 +218,8 @@ ReleaseLint v0.1 会检查：
 - 已关闭 issue 应该链接到 PR 或 commit，除非标记为 `no-code-change`、`invalid`、`duplicate` 或 `wontfix`。
 
 ReleaseLint 会同时从 issue 正文和已合并 PR 正文中识别关联 issue，例如 `fixes #123`、`closes #123`、`resolves #123`。
+
+将 `requirements.requireConventionalCommits` 设置为 `true` 后，如果发版区间内的 commit subject 不符合 conventional commit 格式，ReleaseLint 会阻断检查。
 
 ## GitHub Actions Annotations
 

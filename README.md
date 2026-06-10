@@ -100,8 +100,8 @@ For npm trusted publishing, configure the package on npmjs.com with:
 After that, maintainers can publish a release with:
 
 ```bash
-git tag v0.1.3
-git push origin v0.1.3
+git tag v0.1.4
+git push origin v0.1.4
 ```
 
 ## CLI
@@ -161,7 +161,7 @@ jobs:
       issues: read
     steps:
       - uses: actions/checkout@v4
-      - uses: vaibanbuilds/releaselint@v0.1.3
+      - uses: vaibanbuilds/releaselint@v0.1.4
         with:
           since-tag: ${{ inputs.since-tag }}
           version-file: package.json
@@ -177,7 +177,7 @@ permissions:
 
 steps:
   - uses: actions/checkout@v4
-  - uses: vaibanbuilds/releaselint@v0.1.3
+  - uses: vaibanbuilds/releaselint@v0.1.4
     with:
       since-tag: v1.2.0
       comment: true
