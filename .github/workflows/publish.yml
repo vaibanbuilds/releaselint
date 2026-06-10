@@ -43,3 +43,4 @@ jobs:
       - run: npm run check:commits
       - run: npm run check:init
       - run: npm run check:config
+      - run: npm publish --provenance --access public
