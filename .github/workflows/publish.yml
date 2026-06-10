@@ -17,19 +17,22 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  create-tag:
-    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/publish/v')
+  npm:
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/heads/publish/v')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Create release tag
+          registry-url: https://registry.npmjs.org
+      - name: Resolve release tag
         run: |
           set -euo pipefail
           package_tag="v$(node -p 'require("./package.json").version')"
-          if [[ "${GITHUB_REF}" == refs/heads/publish/v* ]]; then
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            release_tag="${GITHUB_REF_NAME}"
+          elif [[ "${GITHUB_REF}" == refs/heads/publish/v* ]]; then
             release_tag="${GITHUB_REF_NAME#publish/}"
           else
             release_tag="${package_tag}"
@@ -38,31 +41,25 @@ jobs:
             echo "Release tag ${release_tag} does not match package version ${package_tag}"
             exit 1
           fi
-          if git ls-remote --exit-code --tags origin "refs/tags/${release_tag}" >/dev/null 2>&1; then
-            echo "Tag ${release_tag} already exists"
+          echo "RELEASE_TAG=${release_tag}" >> "${GITHUB_ENV}"
+      - name: Create release tag
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --tags origin "refs/tags/${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "Tag ${RELEASE_TAG} already exists"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag "${release_tag}"
-          git push origin "${release_tag}"
-
-  npm:
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org
+          git tag "${RELEASE_TAG}"
+          git push origin "${RELEASE_TAG}"
       - name: Verify tag matches package version
-        if: startsWith(github.ref, 'refs/tags/v')
         run: |
           node - <<'NODE'
           const pkg = require("./package.json");
           const expected = `v${pkg.version}`;
-          const actual = process.env.GITHUB_REF_NAME;
+          const actual = process.env.RELEASE_TAG;
           if (actual !== expected) {
             console.error(`Tag ${actual} does not match package version ${expected}`);
             process.exit(1);
